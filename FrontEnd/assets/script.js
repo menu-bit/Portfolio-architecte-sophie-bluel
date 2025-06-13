@@ -31,7 +31,7 @@ filterButtons.forEach(btn => {
 	button = document.createElement('button');
 	button.classList.add('filter-button');  // Ajouter la classe CSS pour le style
 	button.innerText = btn.text; // Définir le texte du bouton	
-	button.setAttribute('id', btn.category); // Ajouter un attribut de données pour la catégorie
+	//button.setAttribute('id', btn.category); 
 	filterSection.appendChild(button); // Ajouter le bouton à la section de filtre
 
 
@@ -43,16 +43,7 @@ filterButtons.forEach(btn => {
 
 });
 
-
-
-    
-
-
-
-
-
-
-
+  
 
 // Créer les nouveau boutons
 //const allButton = document.createElement('button');

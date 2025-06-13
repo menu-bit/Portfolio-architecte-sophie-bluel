@@ -7,7 +7,7 @@ fetch('http://localhost:5678/api/works')
 		gallery.innerHTML = '';
 
 		data.forEach(element =>
-			gallery.innerHTML +=`<figure>
+			gallery.innerHTML += `<figure>
 				<img src="${element.imageUrl}" alt="${element.title}">
 				<figcaption>${element.title}</figcaption>
 			</figure>`
@@ -15,35 +15,80 @@ fetch('http://localhost:5678/api/works')
 
 	});
 
-// Array to hold the filter buttons and categories
-const filterButtons = [
-  { text: 'Tous', category: 'Tous' },
-  { text: 'Objets', category: 'Objets' },
-  { text: 'Appartements', category: 'Appartements' },
-  { text: 'Hôtels & restaurants', category: 'Hotels & restaurants' }
-];
+document.getElementById("tous").addEventListener("click", function () {
+	// Fetch all works from the API and display them in the gallery
+	fetch('http://localhost:5678/api/works')
+		.then(response => response.json())
+		.then(data => {
 
-// Sélectionner la section de filtre
-const filterSection = document.getElementById('filter');
+			const gallery = document.getElementById('gallery');
+			gallery.innerHTML = '';
 
-// Créer les boutons de filtre dynamiquement
-filterButtons.forEach(btn => {
-	button = document.createElement('button');
-	button.classList.add('filter-button');  // Ajouter la classe CSS pour le style
-	button.innerText = btn.text; // Définir le texte du bouton	
-	//button.setAttribute('id', btn.category); 
-	filterSection.appendChild(button); // Ajouter le bouton à la section de filtre
+			data.forEach(element =>
+				gallery.innerHTML += `<figure>
+					<img src="${element.imageUrl}" alt="${element.title}">
+					<figcaption>${element.title}</figcaption>
+				</figure>`
+			);
 
-
-	// Ajouter un écouteur d'événement pour le clic sur le bouton
-	button.addEventListener('click', () => {
-		
-
+		});
 });
 
+document.getElementById("objets").addEventListener("click", function () {
+	// Fetch all works from the API and display only categoryId 1 (objects)
+	fetch('http://localhost:5678/api/works')
+		.then(response => response.json())
+		.then(data => {
+			const filteredData = data.filter(item => item.categoryId === 1); // ✅ filtering here
+			const gallery = document.getElementById('gallery');
+			gallery.innerHTML = '';
+
+			filteredData.forEach(element => {
+				gallery.innerHTML += `<figure>
+                    <img src="${element.imageUrl}" alt="${element.title}">
+                    <figcaption>${element.title}</figcaption>
+                </figure>`;
+			});
+		});
 });
 
-  
+document.getElementById("apartments").addEventListener("click", function () {
+	// Fetch all works from the API and display only categoryId 2 (apartments)
+	fetch('http://localhost:5678/api/works')
+		.then(response => response.json())
+		.then(data => {
+			const filteredData = data.filter(item => item.categoryId === 2); // ✅ filtering here
+			const gallery = document.getElementById('gallery');
+			gallery.innerHTML = '';
+
+			filteredData.forEach(element => {
+				gallery.innerHTML += `<figure>
+                    <img src="${element.imageUrl}" alt="${element.title}">
+                    <figcaption>${element.title}</figcaption>
+                </figure>`;
+			});
+		});
+});
+
+document.getElementById("hotels-restaurants").addEventListener("click", function () {
+	// Fetch all works from the API and display only categoryId 3 (hotels-restaurants)
+	fetch('http://localhost:5678/api/works')
+		.then(response => response.json())
+		.then(data => {
+			const filteredData = data.filter(item => item.categoryId === 3); // ✅ filtering here
+			const gallery = document.getElementById('gallery');
+			gallery.innerHTML = '';
+
+			filteredData.forEach(element => {
+				gallery.innerHTML += `<figure>
+                    <img src="${element.imageUrl}" alt="${element.title}">
+                    <figcaption>${element.title}</figcaption>
+                </figure>`;
+			});
+		});
+});
+
+
 
 // Créer les nouveau boutons
 //const allButton = document.createElement('button');

@@ -20,7 +20,7 @@ const filterButtons = [
   { text: 'Tous', category: 'Tous' },
   { text: 'Objets', category: 'Objets' },
   { text: 'Appartements', category: 'Appartements' },
-  { text: 'Hôtels & restaurants', category: 'Hôtels & restaurants' }
+  { text: 'Hôtels & restaurants', category: 'Hotels & restaurants' }
 ];
 
 // Sélectionner la section de filtre

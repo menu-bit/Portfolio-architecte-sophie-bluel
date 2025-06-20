@@ -30,7 +30,6 @@ document.getElementById("tous").addEventListener("click", function () {
 					<figcaption>${element.title}</figcaption>
 				</figure>`
 			);
-
 		});
 });
 
@@ -88,27 +87,3 @@ document.getElementById("hotels-restaurants").addEventListener("click", function
 		});
 });
 
-
-
-// Créer les nouveau boutons
-//const allButton = document.createElement('button');
-//allButton.classList.add('filter-button');
-//allButton.innerText = 'Tous'
-
-//const objectsButton = document.createElement('button');
-//objectsButton.classList.add('filter-button');
-//objectsButton.innerText = 'Objets';
-
-//const apartmentsButton = document.createElement('button');
-//apartmentsButton.classList.add('filter-button');
-//apartmentsButton.innerText = 'Apartments';
-
-//const hotelsButton = document.createElement('button');
-//hotelsButton.classList.add('filter-button');
-//hotelsButton.innerText = 'Hotels & restaurants';
-
-// Ajouter les nouveau boutons dans la section de filtre
-//filterSection.appendChild(allButton);
-//filterSection.appendChild(objectsButton);
-//filterSection.appendChild(apartmentsButton);
-//filterSection.appendChild(hotelsButton);

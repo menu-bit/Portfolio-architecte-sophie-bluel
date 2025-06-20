@@ -215,6 +215,7 @@ footer nav ul {
 
 
 #login {
+	text-align: center;
 	width: 50%;
 	margin: auto;
 }
@@ -247,4 +248,12 @@ footer nav ul {
 }
 #login a{ 
 	text-align: center;
+}
+
+.portfolio {
+	display:flex;
+	justify-content: center;
+ 	gap: 30px;
+	padding-top: 0px;
+	padding-bottom: 80px;
 }

@@ -156,9 +156,14 @@ li:hover {
 	padding: 5px 20px;
 	margin: 5px;
 	cursor: pointer;
-}
+	}
 
 .filter-button:hover {
+	background-color: #1D6154;
+	color: white;
+}
+
+.filter-button.active {
 	background-color: #1D6154;
 	color: white;
 }
@@ -256,4 +261,7 @@ footer nav ul {
  	gap: 30px;
 	padding-top: 0px;
 	padding-bottom: 80px;
+}
+#modify {
+	display: none;
 }

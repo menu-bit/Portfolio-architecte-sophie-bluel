@@ -16,6 +16,11 @@ fetch('http://localhost:5678/api/works')
 	});
 
 document.getElementById("tous").addEventListener("click", function () {
+	// Active/disactive class from other buttons
+	document.getElementById("tous").classList.add("active");
+	document.getElementById("objets").classList.remove("active");
+	document.getElementById("apartments").classList.remove("active");
+	document.getElementById("hotels-restaurants").classList.remove("active");
 	// Fetch all works from the API and display them in the gallery
 	fetch('http://localhost:5678/api/works')
 		.then(response => response.json())
@@ -34,6 +39,12 @@ document.getElementById("tous").addEventListener("click", function () {
 });
 
 document.getElementById("objets").addEventListener("click", function () {
+	// Active/disactive class from other buttons
+	document.getElementById("tous").classList.remove("active");
+	document.getElementById("objets").classList.add("active");
+	document.getElementById("apartments").classList.remove("active");
+	document.getElementById("hotels-restaurants").classList.remove("active");
+
 	// Fetch all works from the API and display only categoryId 1 (objects)
 	fetch('http://localhost:5678/api/works')
 		.then(response => response.json())
@@ -52,6 +63,11 @@ document.getElementById("objets").addEventListener("click", function () {
 });
 
 document.getElementById("apartments").addEventListener("click", function () {
+	// Active/disactive class from other buttons
+	document.getElementById("tous").classList.remove("active");
+	document.getElementById("objets").classList.remove("active");
+	document.getElementById("apartments").classList.add("active");	
+	document.getElementById("hotels-restaurants").classList.remove("active");
 	// Fetch all works from the API and display only categoryId 2 (apartments)
 	fetch('http://localhost:5678/api/works')
 		.then(response => response.json())
@@ -70,6 +86,12 @@ document.getElementById("apartments").addEventListener("click", function () {
 });
 
 document.getElementById("hotels-restaurants").addEventListener("click", function () {
+	// Active/disactive class from other buttons
+	document.getElementById("tous").classList.remove("active");
+	document.getElementById("objets").classList.remove("active");
+	document.getElementById("apartments").classList.remove("active");
+	document.getElementById("hotels-restaurants").classList.add("active");
+
 	// Fetch all works from the API and display only categoryId 3 (hotels-restaurants)
 	fetch('http://localhost:5678/api/works')
 		.then(response => response.json())
@@ -87,3 +109,16 @@ document.getElementById("hotels-restaurants").addEventListener("click", function
 		});
 });
 
+//add modify button if user is logged in
+if (sessionStorage.getItem('token')) {
+	document.getElementById("modify").style.display = "block";
+
+	const logoutButton = document.createElement('button');
+	logoutButton.id = 'logout';
+	logoutButton.textContent = 'Logout';
+	logoutButton.addEventListener('click', function () {
+		sessionStorage.removeItem('token'); // Remove the token from sessionStorage
+		window.location.href = 'index.html'; // Redirect to the home page
+	});
+	document.body.appendChild(logoutButton);	
+};

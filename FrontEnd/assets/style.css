@@ -218,7 +218,7 @@ footer nav ul {
 }
 
 
-
+/* form login */
 #login {
 	text-align: center;
 	width: 50%;
@@ -255,13 +255,15 @@ footer nav ul {
 	text-align: center;
 }
 
-.portfolio {
-	display:flex;
-	justify-content: center;
+/* modify button 
+#portfolio img {
+	justify-items: center;
  	gap: 30px;
 	padding-top: 0px;
-	padding-bottom: 80px;
-}
+	padding-bottom: 0px;
+}*/
+
 #modify {
 	display: none;
 }
+

@@ -139,4 +139,3 @@ if (sessionStorage.getItem("token")) {
 	document.getElementById("buttonmodifier").style.display = "none";
 	document.getElementById("buttonmodifier").removeEventListener("click");
 }
-

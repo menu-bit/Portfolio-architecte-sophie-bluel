@@ -19,22 +19,22 @@ function loginUser() {
 		body: JSON.stringify(loginData)
 
 	})
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error connexion');
-        }
-        return response.json();
-    })
-    .then(data => {
-		// Store the token in localStorage
-		sessionStorage.setItem('token', data.token);
-		// Redirect to the admin page
-		window.location.href = 'index.html';
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Error connexion');
+			}
+			return response.json();
+		})
+		.then(data => {
+			// Store the token in localStorage
+			sessionStorage.setItem('token', data.token);
+			// Redirect to the admin page
+			window.location.href = 'index.html';
 
-    })
-    .catch(error => {
-        showError(error.message);
-    });
+		})
+		.catch(error => {
+			showError(error.message);
+		});
 }
 
 

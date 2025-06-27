@@ -16,12 +16,12 @@ fetch('http://localhost:5678/api/works')
 	});
 
 document.getElementById("tous").addEventListener("click", function () {
-// Active/disactive class from other buttons
+	// Active/disactive class from other buttons
 	document.getElementById("tous").classList.add("active");
 	document.getElementById("objets").classList.remove("active");
 	document.getElementById("apartments").classList.remove("active");
 	document.getElementById("hotels-restaurants").classList.remove("active");
-// Fetch all works from the API and display them in the gallery
+	// Fetch all works from the API and display them in the gallery
 	fetch('http://localhost:5678/api/works')
 		.then(response => response.json())
 		.then(data => {
@@ -45,7 +45,7 @@ document.getElementById("objets").addEventListener("click", function () {
 	document.getElementById("apartments").classList.remove("active");
 	document.getElementById("hotels-restaurants").classList.remove("active");
 
-// Fetch all works from the API and display only categoryId 1 (objects)
+	// Fetch all works from the API and display only categoryId 1 (objects)
 	fetch('http://localhost:5678/api/works')
 		.then(response => response.json())
 		.then(data => {
@@ -111,10 +111,10 @@ document.getElementById("hotels-restaurants").addEventListener("click", function
 
 //add modify button if user is logged in
 if (sessionStorage.getItem("token")) {
-	document.getElementById("modify").style.display = "block";
+	document.getElementById("buttonModal").style.display = "block";
 
 
-// Replace login button with logout
+	// Replace login button with logout
 	const login = document.getElementById("login");
 
 	const logout = document.createElement("li");
@@ -125,8 +125,6 @@ if (sessionStorage.getItem("token")) {
 		sessionStorage.removeItem("token");
 		window.location.href = "index.html";
 	});
-
-
 }
 
 

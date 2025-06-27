@@ -111,7 +111,7 @@ document.getElementById("hotels-restaurants").addEventListener("click", function
 
 //add modify button if user is logged in
 if (sessionStorage.getItem("token")) {
-	document.getElementById("buttonModal").style.display = "block";
+	document.getElementById("buttonmodifier").style.display = "block";
 
 
 	// Replace login button with logout
@@ -125,7 +125,6 @@ if (sessionStorage.getItem("token")) {
 		sessionStorage.removeItem("token");
 		window.location.href = "index.html";
 	});
+}else{
+	document.getElementById("buttonmodifier").style.display = "none";
 }
-
-
-

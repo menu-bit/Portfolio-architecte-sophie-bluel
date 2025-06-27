@@ -375,11 +375,9 @@ footer nav ul {
 
 /*  Modal  */
 .modal {
-	display: none;
+
 	position: fixed;
 	align-self: center;
-
-
 }
 
 h3 {

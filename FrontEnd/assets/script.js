@@ -109,12 +109,18 @@ document.getElementById("hotels-restaurants").addEventListener("click", function
 		});
 });
 
-//add modify button if user is logged in
+// Check if user is logged in and show modify button if user is logged in
 if (sessionStorage.getItem("token")) {
 	document.getElementById("buttonmodifier").style.display = "block";
+
+	// Show the modal when the modify button is clicked
 	document.getElementById("buttonmodifier").addEventListener("click", function () {
-window.alert("ooo");
 		document.getElementById("myModal").style.display = "block";
+	});
+
+	 // Close the modal when the close button is clicked
+	document.getElementById("close-button").addEventListener("click", function () {
+		document.getElementById("myModal").style.display = "none";
 	});
 
 
@@ -129,7 +135,7 @@ window.alert("ooo");
 		sessionStorage.removeItem("token");
 		window.location.href = "index.html";
 	});
-}else{
+} else {
 	document.getElementById("buttonmodifier").style.display = "none";
 	document.getElementById("buttonmodifier").removeEventListener("click");
 }

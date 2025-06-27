@@ -375,9 +375,17 @@ footer nav ul {
 
 /*  Modal  */
 .modal {
-
+	display:none;
 	position: fixed;
 	align-self: center;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	width: 630px;
+	height: 688px;
+	top: 660px;
+	color: rgba(255, 255, 255, 1);
+	border-radius: 10px;
 }
 
 h3 {
@@ -398,19 +406,14 @@ h3 {
 	cursor: pointer;
 }
 
-.modal-content {
-	background-color: #fefefe;
-	margin: auto;
-	padding: 20px;
-	width: 630px;
-	height: 688px;
-	top: 660px;
-	color: rgba(255, 255, 255, 1);
-	border-radius: 10px;
-}
 
-.close {
-	width: 12.01px;
-	height: 12.01px;
-	float: right;
+
+#close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
 }

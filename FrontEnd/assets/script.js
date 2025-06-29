@@ -112,6 +112,7 @@ document.getElementById("hotels-restaurants").addEventListener("click", function
 // Check if user is logged in and show modify button if user is logged in
 if (sessionStorage.getItem("token")) {
 	document.getElementById("buttonmodifier").style.display = "block";
+	document.getElementById("iconmodifier").style.display = "block";
 
 	// Show the modal when the modify button is clicked
 	document.getElementById("buttonmodifier").addEventListener("click", function () {

@@ -117,9 +117,26 @@ if (sessionStorage.getItem("token")) {
 	// Show the modal when the modify button is clicked
 	document.getElementById("buttonmodifier").addEventListener("click", function () {
 		document.getElementById("myModal").style.display = "block";
+		
+		//display work in modal
+		fetch('http://localhost:5678/api/works')
+			.then(response => response.json())
+			.then(data => {
+
+				const gallery = document.getElementById('modalgallery');
+				gallery.innerHTML = '';
+
+				data.forEach(element =>
+					gallery.innerHTML += `<figure>
+				<img src="${element.imageUrl}" alt="${element.title}">
+				
+			</figure>`
+				);
+
+			});
 	});
 
-	 // Close the modal when the close button is clicked
+	// Close the modal when the close button is clicked
 	document.getElementById("close-button").addEventListener("click", function () {
 		document.getElementById("myModal").style.display = "none";
 	});
@@ -136,6 +153,8 @@ if (sessionStorage.getItem("token")) {
 		sessionStorage.removeItem("token");
 		window.location.href = "index.html";
 	});
+
+
 } else {
 	document.getElementById("buttonmodifier").style.display = "none";
 	document.getElementById("buttonmodifier").removeEventListener("click");

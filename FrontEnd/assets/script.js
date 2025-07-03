@@ -119,7 +119,7 @@ if (sessionStorage.getItem("token")) {
 	// Show the modal when the modify button is clicked
 	document.getElementById("buttonmodifier").addEventListener("click", function () {
 		document.getElementById("myModal").style.display = "block";
-		
+
 		//display work in modal
 		fetch('http://localhost:5678/api/works')
 			.then(response => response.json())
@@ -130,17 +130,21 @@ if (sessionStorage.getItem("token")) {
 
 				data.forEach(element =>
 					gallery.innerHTML += `<figure>
-				<img src="${element.imageUrl}" alt="${element.title}">
-				
+				<img src="${element.imageUrl}" alt="${element.title}" >
+				<span class="material-symbols-outlined" id="deleteButton">	
+					delete
+				</span>	
 			</figure>`
 				);
-
 			});
 	});
 
+
+
+
 	//function to close modal if outside click
 	function clickOutside(e) {
-		if(e.target == myModal) {
+		if (e.target == myModal) {
 			myModal.style.display = "none";
 		};
 	};

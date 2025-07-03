@@ -453,3 +453,15 @@ hr {
 	cursor: pointer;
 	margin: 40px 80px 30px 150px; ;
 }
+
+
+#deleteButton {
+	position: absolute;
+	color:white;
+	padding: 2px;
+	background-color: black;
+	border-radius: 3px;
+	font-size: 15px;
+	cursor: pointer;
+	display: inline-block;
+}

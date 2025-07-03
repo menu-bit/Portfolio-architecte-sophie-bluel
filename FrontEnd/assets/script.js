@@ -21,6 +21,7 @@ document.getElementById("tous").addEventListener("click", function () {
 	document.getElementById("objets").classList.remove("active");
 	document.getElementById("apartments").classList.remove("active");
 	document.getElementById("hotels-restaurants").classList.remove("active");
+
 	// Fetch all works from the API and display them in the gallery
 	fetch('http://localhost:5678/api/works')
 		.then(response => response.json())
@@ -68,6 +69,7 @@ document.getElementById("apartments").addEventListener("click", function () {
 	document.getElementById("objets").classList.remove("active");
 	document.getElementById("apartments").classList.add("active");
 	document.getElementById("hotels-restaurants").classList.remove("active");
+
 	// Fetch all works from the API and display only categoryId 2 (apartments)
 	fetch('http://localhost:5678/api/works')
 		.then(response => response.json())
@@ -136,6 +138,15 @@ if (sessionStorage.getItem("token")) {
 			});
 	});
 
+	//function to close modal if outside click
+	function clickOutside(e) {
+		if(e.target == myModal) {
+			myModal.style.display = "none";
+		};
+	};
+	//listen for outside click which calls the function above
+	window.addEventListener("click", clickOutside);
+
 	// Close the modal when the close button is clicked
 	document.getElementById("close-button").addEventListener("click", function () {
 		document.getElementById("myModal").style.display = "none";
@@ -146,6 +157,7 @@ if (sessionStorage.getItem("token")) {
 	const login = document.getElementById("login");
 
 	const logout = document.createElement("li");
+	logout.className = "nav";
 	logout.id = "logout";
 	logout.textContent = "logout";
 	login.replaceWith(logout); // Replace login button with logout button 

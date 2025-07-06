@@ -144,6 +144,11 @@ if (sessionStorage.getItem("token")) {
 				//listen for outside click which calls the function above
 				window.addEventListener("click", clickOutside);
 
+				// Close the modal when the close button is clicked
+				document.getElementById("close-button").addEventListener("click", function () {
+					document.getElementById("myModal").style.display = "none";
+				});
+
 
 				// Attach click event to each delete button
 				const deleteButtons = document.getElementsByClassName("material-symbols-outlined")
@@ -165,27 +170,39 @@ if (sessionStorage.getItem("token")) {
 	});
 
 
-	// Correctly get references to the DOM elements
-	const fileInput = document.getElementById("fileInput");
-	const modalGallery = document.getElementById("modalgallery");
-	const addPhotoBtn = document.getElementById("addphoto");
 
-	addphoto.addEventListener("click", function () {
-		fileInput.click();
+	//change to 2nd modal to add photo from here if ajouter une photo button is clicked it change modal
+	document.getElementById("addphoto").addEventListener("click", function () {
+		document.getElementById("modal-content2").style.display = "block";
+		document.getElementById("modal-content").style.display = "none";
+
 	});
-
-	fileInput.addEventListener("change", (event) => {
-		const file = event.target.files[0];
-		if (file && file.type.startsWith("image/")) {
-			const img = document.createElement("img");
-			img.src = URL.createObjectURL(file);
-			modalGallery.appendChild(img);
-		}
-	});
-
-	// Close the modal when the close button is clicked
-	document.getElementById("close-button").addEventListener("click", function () {
+	// Close 2ns modal when the close button2 is clicked
+	document.getElementById("close-button2").addEventListener("click", function () {
 		document.getElementById("myModal").style.display = "none";
+	});
+
+	//adding images browsing computer goes here
+	const dropArea = document.getElementById("drop-area");
+	const fileInput = document.getElementById("fileInput");
+	const imageView = document.getElementById("img-view");
+
+	fileInput.addEventListener("change", uploadImage);
+
+	function uploadImage(){
+		let imgLink = URL.createObjectURL(fileInput.files[0]);
+		imageView.style.backgroundImage = `url(${imgLink})`;
+		imageView.textContent ="";
+
+	}
+//adding images by d&d goes here
+	dropArea.addEventListener("dragover", function(e){
+		e.preventDefault();
+	});
+	dropArea.addEventListener("drop", function(e){
+		e.preventDefault();
+		fileInput.files = e.dataTransfer.files;
+		uploadImage()
 	});
 
 

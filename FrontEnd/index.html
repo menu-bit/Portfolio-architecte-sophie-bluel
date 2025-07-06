@@ -90,15 +90,41 @@
 
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
-		<div class="modal-content">
+		<!-- The modal-content to show existing photos -->
+		<div class="modal-content" id="modal-content">
 			<span id="close-button">&times;</span>
 			<h3>Galerie photo</h3>
 			<div class="modalgallery" id="modalgallery">
 			</div>
 			<hr>
-			<input type="button" id="addphoto" value="Ajouter une photo"/>
-			<input type="file" id="fileInput" accept="image/*" hidden/>
+			<input type="button" id="addphoto" value="Ajouter une photo" />
+		</div>
+		<!-- The modal-content to upload new photos -->
+		<div class="modal-content2" id="modal-content2">
 
+			<span id="close-button2">&times;</span>
+			<h3>Ajoute photo</h3>
+			<div class="drop-area">
+				<form id="uploadphoto">
+					<label for="fileInput" id="drop-area">
+						<input type="file" accept="image/*" id="fileInput" multiple hidden />
+						<div id="img-view" class="img-view">
+							<img src="./assets/icons/img-view.png">
+							<button id="addphoto2">+ Ajouter photo</button>
+							<p>jpg, png : 4mo max</p>
+						</div>
+					</label>
+			</div>
+			<div class="info-area">
+				<label for="title">Titre</label>
+				<input type="text" name="title" id="title">
+				<label for="title">Catégorie</label>
+				<input type="category" name="category" id="category">
+			</div>
+			<hr>
+			<input type="submit" value="Valider" id="validate">
+			</form>
+			</label>
 		</div>
 	</div>
 </body>

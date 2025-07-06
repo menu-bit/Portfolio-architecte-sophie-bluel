@@ -124,32 +124,64 @@ if (sessionStorage.getItem("token")) {
 		fetch('http://localhost:5678/api/works')
 			.then(response => response.json())
 			.then(data => {
-
 				const gallery = document.getElementById('modalgallery');
 				gallery.innerHTML = '';
 
 				data.forEach(element =>
 					gallery.innerHTML += `<figure>
-				<img src="${element.imageUrl}" alt="${element.title}" >
-				<span class="material-symbols-outlined" id="deleteButton">	
+				<img src="${element.imageUrl}" alt="${element.title}" data-id="${element.id}">
+				<span class="material-symbols-outlined" data-id="${element.id}" type="button" id="button">	
 					delete
 				</span>	
 			</figure>`
 				);
+				//function to close modal if outside click
+				function clickOutside(e) {
+					if (e.target == myModal) {
+						myModal.style.display = "none";
+					};
+				};
+				//listen for outside click which calls the function above
+				window.addEventListener("click", clickOutside);
+
+
+				// Attach click event to each delete button
+				const deleteButtons = document.getElementsByClassName("material-symbols-outlined")
+				for (let i = 0; i < deleteButtons.length; i++) {
+					deleteButtons[i].addEventListener("click", function () {
+						const id = this.getAttribute("data-id");
+
+
+						// Find the corresponding image element with matching ID
+						const imageToDelete = document.querySelector(`img[data-id="${id}"]`);
+						//dlete image
+						if (imageToDelete) {
+							imageToDelete.remove();
+							this.style.display = "none";
+						}
+					});
+				}
 			});
 	});
 
 
+	// Correctly get references to the DOM elements
+	const fileInput = document.getElementById("fileInput");
+	const modalGallery = document.getElementById("modalgallery");
+	const addPhotoBtn = document.getElementById("addphoto");
 
+	addphoto.addEventListener("click", function () {
+		fileInput.click();
+	});
 
-	//function to close modal if outside click
-	function clickOutside(e) {
-		if (e.target == myModal) {
-			myModal.style.display = "none";
-		};
-	};
-	//listen for outside click which calls the function above
-	window.addEventListener("click", clickOutside);
+	fileInput.addEventListener("change", (event) => {
+		const file = event.target.files[0];
+		if (file && file.type.startsWith("image/")) {
+			const img = document.createElement("img");
+			img.src = URL.createObjectURL(file);
+			modalGallery.appendChild(img);
+		}
+	});
 
 	// Close the modal when the close button is clicked
 	document.getElementById("close-button").addEventListener("click", function () {

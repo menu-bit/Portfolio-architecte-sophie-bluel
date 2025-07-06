@@ -451,17 +451,36 @@ hr {
 	border: 1px solid #1D6154;
 	padding: 5px 20px;
 	cursor: pointer;
-	margin: 40px 80px 30px 150px; ;
+	margin: 40px 80px 30px 150px;
+	;
 }
 
+figure {
+	position: relative;
+}
 
-#deleteButton {
+.material-symbols-outlined {
 	position: absolute;
-	color:white;
+	color: white;
 	padding: 2px;
 	background-color: black;
 	border-radius: 3px;
 	font-size: 15px;
 	cursor: pointer;
 	display: inline-block;
+}
+
+/* addphoto in */
+#fileInput {
+
+	font-family: 'Syne';
+	font-weight: 700;
+	background-color: #1D6154;
+	border-radius: 60px;
+	color: white;
+	border: 1px solid #1D6154;
+	padding: 5px 20px;
+	cursor: pointer;
+	margin: 40px 80px 30px 150px;
+	;
 }

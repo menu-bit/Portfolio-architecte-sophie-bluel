@@ -182,24 +182,35 @@ if (sessionStorage.getItem("token")) {
 		document.getElementById("myModal").style.display = "none";
 	});
 
-	//adding images browsing computer goes here
+	// going back to modal-content from modal-content2
+	const arrowBack = document.getElementById("arrow-back");
+	function displaymodalContent() {
+		document.getElementById("modal-content").style.display = "block";
+		document.getElementById("modal-content2").style.display = "none";
+	}
+
+	arrowBack.addEventListener("click", function () {
+		displaymodalContent();
+	});
+
+	//adding images browsing in computer goes here
 	const dropArea = document.getElementById("drop-area");
 	const fileInput = document.getElementById("fileInput");
 	const imageView = document.getElementById("img-view");
 
 	fileInput.addEventListener("change", uploadImage);
 
-	function uploadImage(){
+	function uploadImage() {
 		let imgLink = URL.createObjectURL(fileInput.files[0]);
 		imageView.style.backgroundImage = `url(${imgLink})`;
-		imageView.textContent ="";
+		imageView.textContent = "";
 
 	}
-//adding images by d&d goes here
-	dropArea.addEventListener("dragover", function(e){
+	//adding images to 2nd modal by d&d goes here
+	dropArea.addEventListener("dragover", function (e) {
 		e.preventDefault();
 	});
-	dropArea.addEventListener("drop", function(e){
+	dropArea.addEventListener("drop", function (e) {
 		e.preventDefault();
 		fileInput.files = e.dataTransfer.files;
 		uploadImage()

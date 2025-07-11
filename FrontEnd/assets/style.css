@@ -457,6 +457,12 @@ hr {
 figure {
 	position: relative;
 }
+#arrow-back {
+	color: black;
+	background-color: white;
+	font-size: 25px;
+	font-weight: 700;
+}
 
 .material-symbols-outlined {
 	position: absolute;

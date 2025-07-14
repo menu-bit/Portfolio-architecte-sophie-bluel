@@ -150,20 +150,27 @@ if (sessionStorage.getItem("token")) {
 				});
 
 
-				// Attach click event to each delete button
+				// Attach click event to each delete button inmodalcontent1
 				const deleteButtons = document.getElementsByClassName("material-symbols-outlined")
 				for (let i = 0; i < deleteButtons.length; i++) {
 					deleteButtons[i].addEventListener("click", function () {
 						const id = this.getAttribute("data-id");
+						const token = sessionStorage.getItem("token");
 
+						fetch(`http://localhost:5678/api/works/${id}`,
+							{
+								method: "DELETE",
+								headers: {
+									'Authorization': `Bearer ${token}`
+								}
+							})
+							.then(() => element.innerHTML += `<figure>
+				<img src="${element.imageUrl}" alt="${element.title}" data-id="${element.id}">
+				<span class="material-symbols-outlined" data-id="${element.id}" type="button" id="button">	
+					delete
+				</span>	
+			</figure>`);
 
-						// Find the corresponding image element with matching ID
-						const imageToDelete = document.querySelector(`img[data-id="${id}"]`);
-						//dlete image
-						if (imageToDelete) {
-							imageToDelete.remove();
-							this.style.display = "none";
-						}
 					});
 				}
 			});
@@ -216,6 +223,34 @@ if (sessionStorage.getItem("token")) {
 		uploadImage()
 	});
 
+	// Sending formdata of modalcontent2 to backend
+	const form = document.getElementById("uploadphoto");
+
+	form.addEventListener("submit", function (e) {
+		e.preventDefault();
+
+		const token = sessionStorage.getItem("token");
+		const formData = new FormData(form);
+
+		fetch(`http://localhost:5678/api/works/`, {
+			method: "POST",
+			body: formData,
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+		})
+			.then(response => response.json())
+			.then(data => {
+				// Reset form and image preview here after successful upload
+				form.reset();
+				imageView.style.backgroundImage = "none";
+				imageView.innerHTML = `<img src="./assets/icons/img-view.png">
+					<button id="addphoto2">+ Ajouter photo</button>
+					<p>jpg, png : 4mo max</p>`;
+			})
+
+	});// closing brackets of submit
+
 
 	// Replace login button with logout
 	const login = document.getElementById("login");
@@ -224,12 +259,13 @@ if (sessionStorage.getItem("token")) {
 	logout.className = "nav";
 	logout.id = "logout";
 	logout.textContent = "logout";
-	login.replaceWith(logout); // Replace login button with logout button 
+	login.replaceWith(logout); // Replace login button with logout button
 	logout.addEventListener("click", function () {
 		sessionStorage.removeItem("token");
 		window.location.href = "index.html";
 	});
 
+	
 
 } else {
 	document.getElementById("buttonmodifier").style.display = "none";

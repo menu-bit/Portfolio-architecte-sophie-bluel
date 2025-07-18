@@ -170,6 +170,7 @@ if (sessionStorage.getItem("token")) {
 					delete
 				</span>	
 			</figure>`);
+							location.reload(); // refresh the whole page
 
 					});
 				}
@@ -269,28 +270,18 @@ if (sessionStorage.getItem("token")) {
 			.then(data => {
 				// Reset form and image preview here after successful upload
 				form.reset();
+				imageView.style.backgroundImage = "none";
 				imageView.innerHTML = `<img src="./assets/icons/img-view.png">
-					<button id="addphoto2">+ Ajouter photo</button>
-					<p>jpg, png : 4mo max</p>`;
-			})
-		refreshGallery();
-		{
-			fetch('http://localhost:5678/api/works')
-				.then(response => response.json())
-				.then(data => {
-					const gallery = document.getElementById('gallery');
-					gallery.innerHTML = '';
+            <button id="addphoto2">+ Ajouter photo</button>
+            <p>jpg, png : 4mo max</p>`;
+				// Close modal after POST photo to backend then refresh
+				const modal = document.getElementById("myModal");
+				modal.style.display = "none"; // close modal
 
-					data.forEach(element => {
-						gallery.innerHTML += `<figure>
-					<img src="${element.imageUrl}" alt="${element.title}">
-					<figcaption>${element.title}</figcaption>
-				</figure>`;
-					});
-				})
-		}
-
+		location.reload(); // refresh the whole page
+			});
 	});// closing brackets of submit
+
 
 
 

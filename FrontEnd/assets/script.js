@@ -209,10 +209,10 @@ if (sessionStorage.getItem("token")) {
 
 	function uploadImage() {
 		let imgLink = URL.createObjectURL(fileInput.files[0]);
-		imageView.style.backgroundImage = `url(${imgLink})`;
-		imageView.textContent = "";
-
+		imageView.innerHTML = `<img src="${imgLink}" class="preview-image">`;
 	}
+
+
 	//adding images to 2nd modal by d&d goes here
 	dropArea.addEventListener("dragover", function (e) {
 		e.preventDefault();
@@ -223,11 +223,37 @@ if (sessionStorage.getItem("token")) {
 		uploadImage()
 	});
 
+
+	// récupérer les catégories dynamiquement depuis l’API
+	const categorySelect = document.getElementById("category");
+
+	fetch('http://localhost:5678/api/categories') // pulling categories and ading to DOM
+		.then(response => response.json())
+		.then(categories => {
+			categorySelect.innerHTML = `<option value=""></option>`;
+			categories.forEach(category => {
+				const option = document.createElement("option");
+				option.value = category.id;
+				option.textContent = category.name;
+				categorySelect.appendChild(option);
+			});
+		});
+
+
 	// Sending formdata of modalcontent2 to backend
 	const form = document.getElementById("uploadphoto");
 
 	form.addEventListener("submit", function (e) {
 		e.preventDefault();
+
+		const title = document.getElementById("title").value;
+		const category = document.getElementById("category").value;
+		const file = fileInput.files[0];
+
+		if (!title || !category || !file) {                    // if form not filled showing up error message
+			alert("Veuillez remplir tous les champs requis !");
+			return;
+		}
 
 		const token = sessionStorage.getItem("token");
 		const formData = new FormData(form);
@@ -243,13 +269,30 @@ if (sessionStorage.getItem("token")) {
 			.then(data => {
 				// Reset form and image preview here after successful upload
 				form.reset();
-				imageView.style.backgroundImage = "none";
 				imageView.innerHTML = `<img src="./assets/icons/img-view.png">
 					<button id="addphoto2">+ Ajouter photo</button>
 					<p>jpg, png : 4mo max</p>`;
 			})
+		refreshGallery();
+		{
+			fetch('http://localhost:5678/api/works')
+				.then(response => response.json())
+				.then(data => {
+					const gallery = document.getElementById('gallery');
+					gallery.innerHTML = '';
+
+					data.forEach(element => {
+						gallery.innerHTML += `<figure>
+					<img src="${element.imageUrl}" alt="${element.title}">
+					<figcaption>${element.title}</figcaption>
+				</figure>`;
+					});
+				})
+		}
 
 	});// closing brackets of submit
+
+
 
 
 	// Replace login button with logout
@@ -265,7 +308,7 @@ if (sessionStorage.getItem("token")) {
 		window.location.href = "index.html";
 	});
 
-	
+
 
 } else {
 	document.getElementById("buttonmodifier").style.display = "none";

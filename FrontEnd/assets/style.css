@@ -207,7 +207,7 @@ li:hover {
 }
 
 #introduction article {
-	flex: 1
+	flex: 1;
 }
 
 #introduction h2 {
@@ -224,11 +224,12 @@ li:hover {
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
+	margin-left: 50px;
 }
 
 .gallery img {
 	width: 100%;
-
+	height: 460px;
 }
 
 /* filtering works */
@@ -594,5 +595,6 @@ figure {
 	padding: 10px 25px;
 	cursor: pointer;
 	margin: 40px 80px 30px 150px;
+	
 }
 

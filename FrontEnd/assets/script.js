@@ -116,11 +116,12 @@ document.getElementById("hotels-restaurants").addEventListener("click", function
 		});
 });
 
+
 // if user is logged in and show modify button 
 if (sessionStorage.getItem("token")) {
 	document.getElementById("buttonmodifier").style.display = "block";
 	document.getElementById("iconmodifier").style.display = "block";
-	document.getElementById("filter").style.display = "none";
+	document.getElementById("filter").style.display = "none";  // hide filter buttons
 
 
 	// Show the modal when the modify button is clicked
@@ -176,7 +177,6 @@ if (sessionStorage.getItem("token")) {
 				});
 			});
 	}
-
 
 
 
@@ -318,7 +318,7 @@ if (sessionStorage.getItem("token")) {
 	logout.addEventListener("click", function () {
 		sessionStorage.removeItem("token");
 		window.location.href = "index.html";
-		
+
 	});
 
 } else {

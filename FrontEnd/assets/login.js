@@ -21,8 +21,10 @@ function loginUser() {
 	})
 		.then(response => {
 			if (!response.ok) {
+				document.getElementById("mdpKO").classList = "visible";
 				throw new Error('Error connexion');
 			}
+			document.getElementById("mdpKO").classList = "hidden";
 			return response.json();
 		})
 		.then(data => {

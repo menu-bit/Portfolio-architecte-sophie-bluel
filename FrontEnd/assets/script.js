@@ -119,9 +119,9 @@ document.getElementById("hotels-restaurants").addEventListener("click", function
 
 // if user is logged in and show modify button 
 if (sessionStorage.getItem("token")) {
-	document.getElementById("buttonmodifier").style.display = "block";
+	document.getElementById("buttonmodifier").classList.remove("hidden");
 	document.getElementById("iconmodifier").style.display = "block";
-	document.getElementById("filter").style.display = "none";  // hide filter buttons
+	document.getElementById("filter").classList.add("hidden"); // hide filter buttons
 
 
 	// Show the modal when the modify button is clicked
@@ -153,7 +153,7 @@ if (sessionStorage.getItem("token")) {
 					const figure = document.createElement("figure");
 					figure.innerHTML = `
 					<img src="${element.imageUrl}" alt="${element.title}" data-id="${element.id}">
-					<span class="material-symbols-outlined" data-id="${element.id}" type="button">delete</span>
+					<span class="material-symbols-outlined delete-icon" data-id="${element.id}" type="button">delete</span>
 				`;
 					gallery.appendChild(figure);
 
@@ -177,6 +177,7 @@ if (sessionStorage.getItem("token")) {
 				});
 			});
 	}
+
 
 
 
@@ -296,7 +297,7 @@ if (sessionStorage.getItem("token")) {
 				imageView.innerHTML = `<img src="./assets/icons/img-view.png">
             <button id="addphoto2">+ Ajouter photo</button>
             <p>jpg, png : 4mo max</p>`;
-				document.getElementById("validate").style.background = "";
+				validateButton.style.background = "";
 				// Close modal after POST photo to backend then refresh
 				const modal = document.getElementById("myModal");
 				modal.style.display = "none"; // close modal
@@ -322,6 +323,6 @@ if (sessionStorage.getItem("token")) {
 	});
 
 } else {
-	document.getElementById("buttonmodifier").style.display = "none";
+	document.getElementById("buttonmodifier").classList.add("hidden");
 	document.getElementById("buttonmodifier").removeEventListener("click");
 }

@@ -54,8 +54,8 @@
 		<section id="portfolio">
 			<div class="project">
 				<h2>Mes Projets</h2>
-				<i class="fa-regular fa-pen-to-square" id="iconmodifier" aria-label=""></i>
-				<button id="buttonmodifier">modifier</button>
+				<i class="fa-regular fa-pen-to-square hidden" id="iconmodifier" aria-label=""></i>
+				<button id="buttonmodifier" >modifier</button>
 			</div>
 
 			<div class="filter" id="filter">
@@ -102,7 +102,7 @@
 			<input type="button" id="addphoto" value="Ajouter une photo" />
 		</div>
 		<!-- The modal-content to upload new photos -->
-		<div class="modal-content2" id="modal-content2" hidden>
+		<div class="modal-content2 hidden" id="modal-content2" >
 			<span class="material-symbols-outlined" id="arrow-back">
 				arrow_back
 			</span>
@@ -114,7 +114,7 @@
 						<input type="file" accept="image/*" id="fileInput" name="image" hidden />
 						<div id="img-view" class="img-view">
 							<img src="./assets/icons/img-view.png">
-							<button id="addphoto2">+ Ajouter photo</button>
+							<span id="addphoto2">+ Ajouter photo</span>
 							<p>jpg, png : 4mo max</p>
 						</div>
 					</label>

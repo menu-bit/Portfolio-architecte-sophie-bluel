@@ -21,11 +21,12 @@ function loginUser() {
 	})
 		.then(response => {
 			if (!response.ok) {
-				document.getElementById("mdpKO").classList = "visible";
-				throw new Error('Error connexion');
+				document.getElementById("error").classList = "visible";
+				throw ('error');
 			}
-			document.getElementById("mdpKO").classList = "hidden";
+			document.getElementById("error").classList = "hidden";
 			return response.json();
+			
 		})
 		.then(data => {
 			// Store the token in localStorage

@@ -55,14 +55,14 @@
 			<div class="project">
 				<h2>Mes Projets</h2>
 				<i class="fa-regular fa-pen-to-square hidden" id="iconmodifier" aria-label=""></i>
-				<button id="buttonmodifier" >modifier</button>
+				<button id="buttonmodifier">modifier</button>
 			</div>
 
 			<div class="filter" id="filter">
 				<button class="filter-button" id="tous">Tous</button>
 				<button class="filter-button" id="objets">Objets</button>
 				<button class="filter-button" id="apartments">Apartments</button>
-				<button class="filter-button" id="hotels-restaurants">Hotels & restaurants</buttons>
+				<button class="filter-button" id="hotels-restaurants">Hotels & restaurants</button>
 			</div>
 			<div class="gallery" id="gallery">
 			</div>
@@ -102,7 +102,7 @@
 			<input type="button" id="addphoto" value="Ajouter une photo" />
 		</div>
 		<!-- The modal-content to upload new photos -->
-		<div class="modal-content2 hidden" id="modal-content2" >
+		<div class="modal-content2 hidden" id="modal-content2">
 			<span class="material-symbols-outlined" id="arrow-back">
 				arrow_back
 			</span>
@@ -112,11 +112,11 @@
 				<form id="uploadphoto">
 					<label for="fileInput" id="drop-area">
 						<input type="file" accept="image/*" id="fileInput" name="image" hidden />
-						<div id="img-view" >
-							<img src="./assets/icons/img-view.png">
+						<span id="img-view">
+							<img src="./assets/icons/img-view.png" alt="preview">
 							<span id="addphoto2">+ Ajouter photo</span>
-							<p>jpg, png : 4mo max</p>
-						</div>
+							<span id="size-img">jpg, png : 4mo max</span>
+						</span>
 					</label>
 
 					<div class="info-area">
@@ -124,7 +124,9 @@
 						<input type="text" name="title" id="title" required>
 
 						<label for="category">Catégorie</label>
-						<select id="category" name="category" required></select>
+						<select id="category" name="category" required>
+							<option value="">Selectonner un categorie</option>
+						</select>
 					</div>
 					<hr>
 					<input type="submit" value="Valider" id="validate">

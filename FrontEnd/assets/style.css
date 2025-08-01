@@ -420,6 +420,7 @@ footer nav ul {
 	font-size: 24px;
 	font-weight: bold;
 	color: #333;
+	cursor: pointer;
 }
 
 h3 {
@@ -577,7 +578,7 @@ figure {
 	margin-left: 40px;
 }
 
-#img-view p {
+#size-img {
 	font-family: 'Work Sans';
 	font-weight: 400;
 	font-size: 10px;
@@ -596,7 +597,7 @@ figure {
 #uploadphoto input[type="text"],
 #uploadphoto select {
 	font-family: 'Work Sans';
-	font-weight: 400px;
+	font-weight: 400;
 	font-size: 14px;
 	/* smaller input/select text */
 	padding: 6px 8px;

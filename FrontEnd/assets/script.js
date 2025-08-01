@@ -120,26 +120,27 @@ document.getElementById("hotels-restaurants").addEventListener("click", function
 // if user is logged in and show modify button 
 if (sessionStorage.getItem("token")) {
 	document.getElementById("buttonmodifier").classList.remove("hidden");
-	document.getElementById("iconmodifier").style.display = "block";
+	document.getElementById("iconmodifier").classList.add("visible");
 	document.getElementById("filter").classList.add("hidden"); // hide filter buttons
 
 
 	// Show the modal when the modify button is clicked
-	document.getElementById("buttonmodifier").addEventListener("click", () => {
-		document.getElementById("myModal").style.display = "block";
-		displayModalGallery();
-	});
+	const modal = document.getElementById("myModal");
+
+
+	document.getElementById("buttonmodifier").addEventListener("click", boutonmodifier(modal));
 
 	// Close modal when clicked outside the modal
 	window.addEventListener("click", e => {
-		if (e.target === document.getElementById("myModal")) {
-			document.getElementById("myModal").style.display = "none";
+		if (e.target === modal) {
+			modal.classList.remove("visible");
+			modal.classList.add("hidden");
 		}
 	});
-
-	// Not to show modal when close butten is clicked
+	// close Modal when close button is clicked
 	document.getElementById("close-button").addEventListener("click", () => {
-		document.getElementById("myModal").style.display = "none";
+		modal.classList.remove("visible");
+		modal.classList.add("hidden");
 	});
 
 	// function to display work in modal1 and deleting works
@@ -179,31 +180,36 @@ if (sessionStorage.getItem("token")) {
 	}
 
 
+	//switch to 2nd modal to add photo goes from here if *ajouter une photo* button is clicked it switch modal
+	const modalContent1 = document.getElementById("modal-content");
+	const modalContent2 = document.getElementById("modal-content2");
 
-
-	//change to 2nd modal to add photo from here if *ajouter une photo* button is clicked it changes modal
 	document.getElementById("addphoto").addEventListener("click", function () {
-		document.getElementById("modal-content2").style.display = "block";
-		document.getElementById("modal-content").style.display = "none";
-
+		modalContent1.classList.remove("visible");
+		modalContent1.classList.add("hidden");
+		modalContent2.classList.add("visible");
+		modalContent2.classList.remove("hidden");
 	});
 
-	// Close 2ns modal when the close button2 is clicked
-	document.getElementById("close-button2").addEventListener("click", function () {
-		document.getElementById("myModal").style.display = "none";
+	// Close 2nd modal when the close button2 is clicked
+	document.getElementById("close-button2").addEventListener("click", () => {
+		modal.classList.remove("visible");
+		modal.classList.add("hidden");
 	});
 
 	// going back to modal-content from modal-content2 clicking back arrow
 	const arrowBack = document.getElementById("arrow-back");
 	function displaymodalContent() {
-		document.getElementById("modal-content").style.display = "block";
-		document.getElementById("modal-content2").style.display = "none";
+		modalContent2.classList.remove("visible");
+		modalContent2.classList.add("hidden");
+		modalContent1.classList.add("visible");
+		modalContent1.classList.remove("hidden");
 	}
 	arrowBack.addEventListener("click", function () {
 		displaymodalContent();
 	});
 
-	// adding images browsing in computer goes here
+	// adding images browsing in computer goes here(image preview)
 	const dropArea = document.getElementById("drop-area");
 	const fileInput = document.getElementById("fileInput");
 	const imageView = document.getElementById("img-view");
@@ -299,8 +305,8 @@ if (sessionStorage.getItem("token")) {
             <p>jpg, png : 4mo max</p>`;
 				validateButton.style.background = "";
 				// Close modal after POST photo to backend then refresh
-				const modal = document.getElementById("myModal");
-				modal.style.display = "none"; // close modal
+				modal.classList.remove("visible"); // close modal
+				modal.classList.add("hidden");
 				displayMainGallery();
 				displayModalGallery();
 
@@ -324,5 +330,13 @@ if (sessionStorage.getItem("token")) {
 
 } else {
 	document.getElementById("buttonmodifier").classList.add("hidden");
-	document.getElementById("buttonmodifier").removeEventListener("click");
+	document.getElementById("buttonmodifier").removeEventListener("click", boutonmodifier());
+}
+
+function boutonmodifier(modal) {
+	return () => {
+		modal.classList.add("visible");
+		modal.classList.remove("hidden");
+		displayModalGallery();
+	};
 }

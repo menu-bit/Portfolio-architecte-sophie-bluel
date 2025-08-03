@@ -55,7 +55,7 @@ document.getElementById("objets").addEventListener("click", function () {
 	fetch('http://localhost:5678/api/works')
 		.then(response => response.json())
 		.then(data => {
-			const filteredData = data.filter(item => item.categoryId === 1); // ✅ filtering here
+			const filteredData = data.filter(item => item.categoryId === 1); //  filtering here
 			const gallery = document.getElementById('gallery');
 			gallery.innerHTML = '';
 
@@ -79,7 +79,7 @@ document.getElementById("apartments").addEventListener("click", function () {
 	fetch('http://localhost:5678/api/works')
 		.then(response => response.json())
 		.then(data => {
-			const filteredData = data.filter(item => item.categoryId === 2); // ✅ filtering here
+			const filteredData = data.filter(item => item.categoryId === 2); //  filtering here
 			const gallery = document.getElementById('gallery');
 			gallery.innerHTML = '';
 
@@ -103,7 +103,7 @@ document.getElementById("hotels-restaurants").addEventListener("click", function
 	fetch('http://localhost:5678/api/works')
 		.then(response => response.json())
 		.then(data => {
-			const filteredData = data.filter(item => item.categoryId === 3); // ✅ filtering here
+			const filteredData = data.filter(item => item.categoryId === 3); //  filtering here
 			const gallery = document.getElementById('gallery');
 			gallery.innerHTML = '';
 

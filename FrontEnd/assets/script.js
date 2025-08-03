@@ -337,6 +337,9 @@ function boutonmodifier(modal) {
 	return () => {
 		modal.classList.add("visible");
 		modal.classList.remove("hidden");
+		document.body.style.overflow = "hidden"; //Disable scroll
 		displayModalGallery();
 	};
 }
+
+

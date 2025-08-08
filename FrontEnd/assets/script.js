@@ -55,7 +55,7 @@ document.getElementById("objets").addEventListener("click", function () {
 	fetch('http://localhost:5678/api/works')
 		.then(response => response.json())
 		.then(data => {
-			const filteredData = data.filter(item => item.categoryId === 1); //  filtering here
+			const filteredData = data.filter(item => item.categoryId === 1); //filter array method, item refers elemnt of array
 			const gallery = document.getElementById('gallery');
 			gallery.innerHTML = '';
 
@@ -135,12 +135,14 @@ if (sessionStorage.getItem("token")) {
 		if (e.target === modal) {
 			modal.classList.remove("visible");
 			modal.classList.add("hidden");
+			document.body.style.overflow = "";
 		}
 	});
 	// close Modal when close button is clicked
 	document.getElementById("close-button").addEventListener("click", () => {
 		modal.classList.remove("visible");
 		modal.classList.add("hidden");
+		document.body.style.overflow = "";
 	});
 
 	// function to display work in modal1 and deleting works
@@ -195,6 +197,7 @@ if (sessionStorage.getItem("token")) {
 	document.getElementById("close-button2").addEventListener("click", () => {
 		modal.classList.remove("visible");
 		modal.classList.add("hidden");
+		document.body.style.overflow = "";
 	});
 
 	// going back to modal-content from modal-content2 clicking back arrow
@@ -204,6 +207,7 @@ if (sessionStorage.getItem("token")) {
 		modalContent2.classList.add("hidden");
 		modalContent1.classList.add("visible");
 		modalContent1.classList.remove("hidden");
+		document.body.style.overflow = "";
 	}
 	arrowBack.addEventListener("click", function () {
 		displaymodalContent();
@@ -307,6 +311,7 @@ if (sessionStorage.getItem("token")) {
 				// Close modal after POST photo to backend then refresh
 				modal.classList.remove("visible"); // close modal
 				modal.classList.add("hidden");
+				document.body.style.overflow = ""; //reset disabled scroll afte sucessful photo upload
 				displayMainGallery();
 				displayModalGallery();
 

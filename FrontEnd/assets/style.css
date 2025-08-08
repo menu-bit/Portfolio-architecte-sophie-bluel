@@ -197,6 +197,20 @@ li:hover {
 	cursor: pointer;
 }
 
+.top-black-band {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  font-family: sans-serif;
+  font-size: 14px;
+  position: fixed; /* stays on top when scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* make sure it stays above other elements */
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -643,5 +657,10 @@ figure {
 
 .visible {
 	display: block;
+}
+
+#error {
+	color: red;
+
 }
 

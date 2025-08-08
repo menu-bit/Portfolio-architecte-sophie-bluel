@@ -1,3 +1,4 @@
+
 // Function to Fetch works from the API and display them in the gallery
 function displayMainGallery() {
 	fetch('http://localhost:5678/api/works')
@@ -119,6 +120,7 @@ document.getElementById("hotels-restaurants").addEventListener("click", function
 
 // if user is logged in and show modify button 
 if (sessionStorage.getItem("token")) {
+		document.getElementById("top-black-band").classList.add("visible");
 	document.getElementById("buttonmodifier").classList.remove("hidden");
 	document.getElementById("iconmodifier").classList.add("visible");
 	document.getElementById("filter").classList.add("hidden"); // hide filter buttons
@@ -334,6 +336,7 @@ if (sessionStorage.getItem("token")) {
 	});
 
 } else {
+	document.getElementById("top-black-band").classList.add("hidden");
 	document.getElementById("buttonmodifier").classList.add("hidden");
 	document.getElementById("buttonmodifier").removeEventListener("click", boutonmodifier());
 }
@@ -346,5 +349,3 @@ function boutonmodifier(modal) {
 		displayModalGallery();
 	};
 }
-
-

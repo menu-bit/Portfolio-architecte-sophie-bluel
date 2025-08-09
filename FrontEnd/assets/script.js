@@ -1,30 +1,83 @@
-// Fetch all works first and store for filtering
-let allWorks = [];
+// Function to Fetch works from the API and display them in the main gallery
+function displayMainGallery() {
+	fetch('http://localhost:5678/api/works')
+		.then(response => response.json())
+		.then(data => {
 
-fetch('http://localhost:5678/api/works')
-	.then(res => res.json())
-	.then(data => {
-		allWorks = data;
-		displayMainGallery(allWorks);
-	});
+			const gallery = document.getElementById('gallery');
+			gallery.innerHTML = '';
 
-// Function to display works in the gallery	
-function displayMainGallery(works) {
-	const gallery = document.getElementById('gallery');
-	gallery.innerHTML = '';
-	works.forEach(work => {
-		gallery.innerHTML += `
-      <figure>
-        <img src="${work.imageUrl}" alt="${work.title}">
-        <figcaption>${work.title}</figcaption>
-      </figure>`;
-	});
+			data.forEach(element =>
+				gallery.innerHTML += `<figure>
+				<img src="${element.imageUrl}" alt="${element.title}">
+				<figcaption>${element.title}</figcaption>
+			</figure>`
+			);
+
+		});
+}
+displayMainGallery(); //calling of function to load gallery
+
+
+// Function to create buttons by category and all listen events
+function FilterGallery() {
+	fetch('http://localhost:5678/api/categories')             //Fetch the categories from the API
+		.then(response => response.json())
+		.then(categories => {
+			const allCategory = { id: 0, name: 'Tous' };              // Add a manually "All" category at the beginning
+			const allCategories = [allCategory, ...categories];
+
+			//Create filter buttons dynamically in the #filter container
+			const filtersContainer = document.getElementById('filter');
+			filtersContainer.innerHTML = '';                        // Clear old buttons
+
+			allCategories.forEach(category => {
+				const button = document.createElement('button');
+				button.textContent = category.name;
+				button.dataset.categoryId = category.id;
+				if (category.id === 0) button.classList.add('active');   // make "Tous"button  active by default
+				filtersContainer.appendChild(button);
+			});
+
+			//Listen for filter button clicks
+			filtersContainer.addEventListener('click', event => {
+				if (event.target.tagName !== 'BUTTON') return;
+
+				// Remove active class from all buttons
+				[...filtersContainer.children].forEach(btn => btn.classList.remove('active'));
+				event.target.classList.add('active');
+				//Display works for the selected category
+				const selectedCategoryId = Number(event.target.dataset.categoryId);
+				displayWorks(selectedCategoryId);
+			});
+
+			displayWorks(0); // Show all by default
+		});
 }
 
+// Display works by category ID
+function displayWorks(categoryId) {
+	fetch('http://localhost:5678/api/works')
+		.then(response => response.json())
+		.then(works => {
+			if (categoryId !== 0) {   // If a specific category is selected, filter the works
+				works = works.filter(work => work.categoryId === categoryId);
+			}
 
+			const gallery = document.getElementById('gallery');
+			gallery.innerHTML = ''; // Clear gallery
 
+			works.forEach(work => {
+				gallery.innerHTML += `<figure>
+					<img src="${work.imageUrl}" alt="${work.title}">
+					<figcaption>${work.title}</figcaption>
+				</figure>`;
+			});
+		});
+}
 
-
+// Run filter setup on page load
+document.addEventListener("DOMContentLoaded", FilterGallery);
 
 
 

@@ -1,25 +1,30 @@
-// Function to Fetch works from the API and display them in the gallery
-function displayWorks(categoryId = 0) {
-  fetch('http://localhost:5678/api/works')
-    .then(res => res.json())
-    .then(works => {
-      if (categoryId !== 0) {
-        works = works.filter(work => work.categoryId === categoryId);
-      }
-      const gallery = document.getElementById('gallery');
-      gallery.innerHTML = '';
-      works.forEach(work => {
-        gallery.innerHTML += `
-          <figure>
-            <img src="${work.imageUrl}" alt="${work.title}">
-            <figcaption>${work.title}</figcaption>
-          </figure>
-        `;
-      });
-    })
+// Fetch all works first and store for filtering
+let allWorks = [];
+
+fetch('http://localhost:5678/api/works')
+	.then(res => res.json())
+	.then(data => {
+		allWorks = data;
+		displayMainGallery(allWorks);
+	});
+
+// Function to display works in the gallery	
+function displayMainGallery(works) {
+	const gallery = document.getElementById('gallery');
+	gallery.innerHTML = '';
+	works.forEach(work => {
+		gallery.innerHTML += `
+      <figure>
+        <img src="${work.imageUrl}" alt="${work.title}">
+        <figcaption>${work.title}</figcaption>
+      </figure>`;
+	});
 }
 
-displayWorks();
+
+
+
+
 
 
 

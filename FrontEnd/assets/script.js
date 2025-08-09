@@ -1,126 +1,31 @@
-
 // Function to Fetch works from the API and display them in the gallery
-function displayMainGallery() {
-	fetch('http://localhost:5678/api/works')
-		.then(response => response.json())
-		.then(data => {
-
-			const gallery = document.getElementById('gallery');
-			gallery.innerHTML = '';
-
-			data.forEach(element =>
-				gallery.innerHTML += `<figure>
-				<img src="${element.imageUrl}" alt="${element.title}">
-				<figcaption>${element.title}</figcaption>
-			</figure>`
-			);
-
-		});
+function displayWorks(categoryId = 0) {
+  fetch('http://localhost:5678/api/works')
+    .then(res => res.json())
+    .then(works => {
+      if (categoryId !== 0) {
+        works = works.filter(work => work.categoryId === categoryId);
+      }
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+      works.forEach(work => {
+        gallery.innerHTML += `
+          <figure>
+            <img src="${work.imageUrl}" alt="${work.title}">
+            <figcaption>${work.title}</figcaption>
+          </figure>
+        `;
+      });
+    })
 }
-displayMainGallery();
 
+displayWorks();
 
-// filtering  by category
-document.getElementById("tous").addEventListener("click", function () {
-	// Active/disactive class from other buttons
-	document.getElementById("tous").classList.add("active");
-	document.getElementById("objets").classList.remove("active");
-	document.getElementById("apartments").classList.remove("active");
-	document.getElementById("hotels-restaurants").classList.remove("active");
-
-	// Fetch all works from the API and display them in the gallery
-	fetch('http://localhost:5678/api/works')
-		.then(response => response.json())
-		.then(data => {
-
-			const gallery = document.getElementById('gallery');
-			gallery.innerHTML = '';
-
-			data.forEach(element =>
-				gallery.innerHTML += `<figure>
-					<img src="${element.imageUrl}" alt="${element.title}">
-					<figcaption>${element.title}</figcaption>
-				</figure>`
-			);
-		});
-});
-
-document.getElementById("objets").addEventListener("click", function () {
-	// Active/disactive class from other buttons
-	document.getElementById("tous").classList.remove("active");
-	document.getElementById("objets").classList.add("active");
-	document.getElementById("apartments").classList.remove("active");
-	document.getElementById("hotels-restaurants").classList.remove("active");
-
-	// Fetch all works from the API and display only categoryId 1 (objects)
-	fetch('http://localhost:5678/api/works')
-		.then(response => response.json())
-		.then(data => {
-			const filteredData = data.filter(item => item.categoryId === 1); //filter array method, item refers elemnt of array
-			const gallery = document.getElementById('gallery');
-			gallery.innerHTML = '';
-
-			filteredData.forEach(element => {
-				gallery.innerHTML += `<figure>
-                    <img src="${element.imageUrl}" alt="${element.title}">
-                    <figcaption>${element.title}</figcaption>
-                </figure>`;
-			});
-		});
-});
-
-document.getElementById("apartments").addEventListener("click", function () {
-	// Active/disactive class from other buttons
-	document.getElementById("tous").classList.remove("active");
-	document.getElementById("objets").classList.remove("active");
-	document.getElementById("apartments").classList.add("active");
-	document.getElementById("hotels-restaurants").classList.remove("active");
-
-	// Fetch all works from the API and display only categoryId 2 (apartments)
-	fetch('http://localhost:5678/api/works')
-		.then(response => response.json())
-		.then(data => {
-			const filteredData = data.filter(item => item.categoryId === 2); //  filtering here
-			const gallery = document.getElementById('gallery');
-			gallery.innerHTML = '';
-
-			filteredData.forEach(element => {
-				gallery.innerHTML += `<figure>
-                    <img src="${element.imageUrl}" alt="${element.title}">
-                    <figcaption>${element.title}</figcaption>
-                </figure>`;
-			});
-		});
-});
-
-document.getElementById("hotels-restaurants").addEventListener("click", function () {
-	// Active/disactive class from other buttons
-	document.getElementById("tous").classList.remove("active");
-	document.getElementById("objets").classList.remove("active");
-	document.getElementById("apartments").classList.remove("active");
-	document.getElementById("hotels-restaurants").classList.add("active");
-
-	// Fetch all works from the API and display only categoryId 3 (hotels-restaurants)
-	fetch('http://localhost:5678/api/works')
-		.then(response => response.json())
-		.then(data => {
-			const filteredData = data.filter(item => item.categoryId === 3); //  filtering here
-			const gallery = document.getElementById('gallery');
-			gallery.innerHTML = '';
-
-			filteredData.forEach(element => {
-				gallery.innerHTML += `<figure>
-                    <img src="${element.imageUrl}" alt="${element.title}">
-                    <figcaption>${element.title}</figcaption>
-                </figure>`;
-			});
-		});
-});
 
 
 // if user is logged in and show modify button 
 if (sessionStorage.getItem("token")) {
-		document.getElementById("top-black-band").classList.add("visible");
+	document.getElementById("top-black-band").classList.add("visible");
 	document.getElementById("buttonmodifier").classList.remove("hidden");
 	document.getElementById("iconmodifier").classList.add("visible");
 	document.getElementById("filter").classList.add("hidden"); // hide filter buttons
